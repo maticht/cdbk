@@ -45,7 +45,6 @@ router.put("/:id", upload.single('image'), async (req, res) => {
         if (!userDataToUpdate.city) delete userDataToUpdate.city;
         if (!userDataToUpdate.region) delete userDataToUpdate.region;
         if (!userDataToUpdate.workLocation) delete userDataToUpdate.workLocation;
-        if (!userDataToUpdate.detailedAddress) delete userDataToUpdate.detailedAddress;
         if (!userDataToUpdate.workingHoursMon) delete userDataToUpdate.workingHoursMon;
         if (!userDataToUpdate.workingHoursTue) delete userDataToUpdate.workingHoursTue;
         if (!userDataToUpdate.workingHoursWed) delete userDataToUpdate.workingHoursWed;
