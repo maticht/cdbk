@@ -1,13 +1,23 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
-const bcrypt = require("bcrypt");
-const Joi = require("joi");
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+cloudinary.config({
+    cloud_name: 'maticht12345',
+    api_key: '296937641242215',
+    api_secret: '1Pz4aF1QxcosM4hU6fwRS2bwlWY'
+})
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {allowed_formats: ['jpg', 'jpeg', 'png', 'webp']}
+});
 
-router.put("/:id", async (req, res) => {
+const upload = multer({ storage: storage });
+router.put("/:id", upload.array('additionalImage', 6), async (req, res) => {
     try {
-        const salt = await bcrypt.genSalt(Number(process.env.SALT));
-        const hashPassword = await bcrypt.hash(req.body.password, salt);
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findById(req.params.id);
+        if (!user) {return res.status(404).json({ message: 'Пользователь не найден' });}
         const userDataToUpdate = { ...req.body };
         if (!userDataToUpdate.email) delete userDataToUpdate.email;
         if (!userDataToUpdate.password) delete userDataToUpdate.password;
@@ -47,28 +57,15 @@ router.put("/:id", async (req, res) => {
         if (!userDataToUpdate.price) delete userDataToUpdate.price;
         if (!userDataToUpdate.image) delete userDataToUpdate.image;
         if (!userDataToUpdate.additionalImage) delete userDataToUpdate.additionalImage;
-        if (user) {
-            return res
-                .status(409)
-                .send({ message: "User with given email already Exist!" });
-        }
-        if (userDataToUpdate.password) {
-            userDataToUpdate.password = hashPassword;
-        }
-        const updatedUser = await User.findByIdAndUpdate(
-            req.params.id,
-            userDataToUpdate,
-            { new: true }
-        );
-        if (!updatedUser) {
-            return res.status(404).send({ message: "User not found" });
-        }
-        return res.status(200).json({ data: updatedUser });
-    } catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
+        const resultPromises = req.files.map(file => cloudinary.uploader.upload(file.path, { folder: 'my-folder' }));
+        const results = await Promise.all(resultPromises);
+        user.additionalImage = results.map(result => result.secure_url);
+        await user.save();
+        res.json(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Ошибка сервера' });
     }
 });
 
 module.exports = router;
-
-

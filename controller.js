@@ -64,8 +64,7 @@ exports.userProfile = async (req,res) => {
             'services ' +
             'price ' +
             'city region street house apartment ' +
-            'additionalImages1 additionalImages2 additionalImages3 additionalImages4 additionalImages5 additionalImages6 additionalImages7 additionalImages8 additionalImages9 additionalImages10 '
-
+            'additionalImage'
         );
         return res.json({profile})
     }catch(err){

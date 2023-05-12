@@ -8,7 +8,10 @@ const userRoutes = require("./models/users");
 const userAuth = require("./models/auth");
 const userUpdate = require("./models/update");
 const userUpdatePhoto = require("./models/uploadPhoto");
-
+const saveUser = require("./models/savedUsers")
+const unSaveUser = require("./models/unSaveUser")
+const getFavoritesUsers = require("./models/getFavoriteUsers")
+const uploadAdditionalImage = require("./models/uploadAdditionalImage")
 const connection = require("./db");
 
 connection();
@@ -22,6 +25,10 @@ app.use("/auth", userAuth);
 app.use("/update", userUpdate);
 app.use("/update", userUpdate);
 app.use("/uploadPhoto", userUpdatePhoto);
+app.use("/saveUser", saveUser);
+app.use("/unSaveUser", unSaveUser);
+app.use("/getFavoritesUsers", getFavoritesUsers);
+app.use("/uploadAdditionalImage", uploadAdditionalImage);
 
 
 

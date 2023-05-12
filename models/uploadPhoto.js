@@ -14,7 +14,7 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage: storage });
-router.put("/:id", upload.single('image'), async (req, res) => {
+router.put("/:id", upload.array('image', 6), async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {return res.status(404).json({ message: 'Пользователь не найден' });}
@@ -56,18 +56,10 @@ router.put("/:id", upload.single('image'), async (req, res) => {
         if (!userDataToUpdate.services) delete userDataToUpdate.services;
         if (!userDataToUpdate.price) delete userDataToUpdate.price;
         if (!userDataToUpdate.image) delete userDataToUpdate.image;
-        if (!userDataToUpdate.additionalImage1) delete userDataToUpdate.additionalImage1;
-        if (!userDataToUpdate.additionalImage2) delete userDataToUpdate.additionalImage2;
-        if (!userDataToUpdate.additionalImage3) delete userDataToUpdate.additionalImage3;
-        if (!userDataToUpdate.additionalImage4) delete userDataToUpdate.additionalImage4;
-        if (!userDataToUpdate.additionalImage5) delete userDataToUpdate.additionalImage5;
-        if (!userDataToUpdate.additionalImage6) delete userDataToUpdate.additionalImage6;
-        if (!userDataToUpdate.additionalImage7) delete userDataToUpdate.additionalImage7;
-        if (!userDataToUpdate.additionalImage8) delete userDataToUpdate.additionalImage8;
-        if (!userDataToUpdate.additionalImage9) delete userDataToUpdate.additionalImage9;
-        if (!userDataToUpdate.additionalImage10) delete userDataToUpdate.additionalImage10;
-        const result = await cloudinary.uploader.upload(req.file.path, { folder: 'my-folder' });
-        user.image = result.secure_url;
+        if (!userDataToUpdate.additionalImage) delete userDataToUpdate.additionalImage;
+        const resultPromises = req.files.map(file => cloudinary.uploader.upload(file.path, { folder: 'my-folder' }));
+        const results = await Promise.all(resultPromises);
+        user.image = results.map(result => result.secure_url);
         await user.save();
         res.json(user);
     } catch (err) {
@@ -75,6 +67,18 @@ router.put("/:id", upload.single('image'), async (req, res) => {
         res.status(500).json({ message: 'Ошибка сервера' });
     }
 });
+
+module.exports = router;
+
+// const result = await cloudinary.uploader.upload(req.file.path, { folder: 'my-folder' });
+//         user.image = result.secure_url;
+//         await user.save();
+//         res.json(user);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: 'Ошибка сервера' });
+//     }
+// });
 
 module.exports = router;
 
