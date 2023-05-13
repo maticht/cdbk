@@ -11,7 +11,8 @@ const userUpdatePhoto = require("./models/uploadPhoto");
 const saveUser = require("./models/savedUsers")
 const unSaveUser = require("./models/unSaveUser")
 const getFavoritesUsers = require("./models/getFavoriteUsers")
-const uploadAdditionalImage = require("./models/uploadAdditionalImage")
+const moveToFront = require("./models/moveToFront")
+const removeImage = require("./models/removeImage")
 const connection = require("./db");
 
 connection();
@@ -28,7 +29,8 @@ app.use("/uploadPhoto", userUpdatePhoto);
 app.use("/saveUser", saveUser);
 app.use("/unSaveUser", unSaveUser);
 app.use("/getFavoritesUsers", getFavoritesUsers);
-app.use("/uploadAdditionalImage", uploadAdditionalImage);
+app.use("/moveToFront", moveToFront);
+app.use("/removeImage", removeImage);
 
 
 
