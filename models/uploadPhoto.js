@@ -58,7 +58,6 @@ router.put("/:id", upload.array('image', 5), async (req, res) => {
         if (!userDataToUpdate.services) delete userDataToUpdate.services;
         if (!userDataToUpdate.price) delete userDataToUpdate.price;
         if (!userDataToUpdate.image) delete userDataToUpdate.image;
-        if (!userDataToUpdate.additionalImage) delete userDataToUpdate.additionalImage;
         const resultPromises = req.files.map(file => cloudinary.uploader.upload(file.path, { folder: 'my-folder' }));
         const results = await Promise.all(resultPromises);
         const existingImages = user.image || [];

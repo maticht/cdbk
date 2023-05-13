@@ -46,7 +46,6 @@ router.put("/:id", async (req, res) => {
         if (!userDataToUpdate.services) delete userDataToUpdate.services;
         if (!userDataToUpdate.price) delete userDataToUpdate.price;
         if (!userDataToUpdate.image) delete userDataToUpdate.image;
-        if (!userDataToUpdate.additionalImage) delete userDataToUpdate.additionalImage;
         if (user) {
             return res
                 .status(409)

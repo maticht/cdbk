@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: false},
     role: {type: String, default: "Subscriber"},
     image: [{type: String, required: false}],
-    additionalImage: {type: String, required: false},
     firstName: { type: String, required: false },
     lastName: { type: String, required: false },
     nameOrCompany: { type: String, required: false },
@@ -93,7 +92,6 @@ const validate = (data) => {
         savedUsers: Joi.array().items(Joi.string()).label("savedUsers").options({ allowUnknown: true }),
         likes: Joi.string().required().label("likes").options({ allowUnknown: true }),
         rating: Joi.string().required().label("rating").options({ allowUnknown: true }),
-        additionalImage: Joi.string().required().label("additionalImage").options({ allowUnknown: true }),
     });
     return schema.validate(data);
 };
