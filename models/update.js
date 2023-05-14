@@ -45,7 +45,10 @@ router.put("/:id", async (req, res) => {
         if (!userDataToUpdate.description) delete userDataToUpdate.description;
         if (!userDataToUpdate.services) delete userDataToUpdate.services;
         if (!userDataToUpdate.price) delete userDataToUpdate.price;
-        if (!userDataToUpdate.image) delete userDataToUpdate.image;
+        if (!userDataToUpdate.image || userDataToUpdate.image.length === 0) delete userDataToUpdate.image;
+        if (!userDataToUpdate.rating) delete userDataToUpdate.rating;
+        if (!userDataToUpdate.likes) delete userDataToUpdate.likes;
+        if (!userDataToUpdate.savedUsers || userDataToUpdate.savedUsers.length === 0) delete userDataToUpdate.savedUsers;
         if (user) {
             return res
                 .status(409)

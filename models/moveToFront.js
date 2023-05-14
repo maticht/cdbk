@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/user");
 
-router.put("/:id/move-to-front", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {

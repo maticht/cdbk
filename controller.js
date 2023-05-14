@@ -63,8 +63,7 @@ exports.userProfile = async (req,res) => {
             'description ' +
             'services ' +
             'price ' +
-            'city region street house apartment ' +
-            'additionalImage'
+            'city region street house apartment '
         );
         return res.json({profile})
     }catch(err){
