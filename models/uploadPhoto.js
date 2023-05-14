@@ -47,6 +47,7 @@ router.put("/:id", upload.array('image', 5), async (req, res) => {
         if (!userDataToUpdate.city) delete userDataToUpdate.city;
         if (!userDataToUpdate.region) delete userDataToUpdate.region;
         if (!userDataToUpdate.workLocation) delete userDataToUpdate.workLocation;
+
         if (!userDataToUpdate.workingHoursMon) delete userDataToUpdate.workingHoursMon;
         if (!userDataToUpdate.workingHoursTue) delete userDataToUpdate.workingHoursTue;
         if (!userDataToUpdate.workingHoursWed) delete userDataToUpdate.workingHoursWed;
@@ -54,6 +55,7 @@ router.put("/:id", upload.array('image', 5), async (req, res) => {
         if (!userDataToUpdate.workingHoursFri) delete userDataToUpdate.workingHoursFri;
         if (!userDataToUpdate.workingHoursSat) delete userDataToUpdate.workingHoursSat;
         if (!userDataToUpdate.workingHoursSun) delete userDataToUpdate.workingHoursSun;
+
         if (!userDataToUpdate.description) delete userDataToUpdate.description;
         if (!userDataToUpdate.services) delete userDataToUpdate.services;
         if (!userDataToUpdate.price) delete userDataToUpdate.price;

@@ -35,6 +35,42 @@ router.put("/:id", async (req, res) => {
         if (!userDataToUpdate.city) delete userDataToUpdate.city;
         if (!userDataToUpdate.region) delete userDataToUpdate.region;
         if (!userDataToUpdate.workLocation) delete userDataToUpdate.workLocation;
+        // if (!userDataToUpdate.workingHoursMon.startMinutes1) delete userDataToUpdate.workingHoursMon.startMinutes1;
+        // if (!userDataToUpdate.workingHoursMon.startHours1) delete userDataToUpdate.workingHoursMon.startHours1;
+        // if (!userDataToUpdate.workingHoursMon.endMinutes1) delete userDataToUpdate.workingHoursMon.endMinutes1;
+        // if (!userDataToUpdate.workingHoursMon.endHours1) delete userDataToUpdate.workingHoursMon.endHours1;
+        //
+        // if (!userDataToUpdate.workingHoursTue.startMinutes2) delete userDataToUpdate.workingHoursTue.startMinutes2;
+        // if (!userDataToUpdate.workingHoursTue.startHours2) delete userDataToUpdate.workingHoursTue.startHours2;
+        // if (!userDataToUpdate.workingHoursTue.endMinutes2) delete userDataToUpdate.workingHoursTue.endMinutes2;
+        // if (!userDataToUpdate.workingHoursTue.endHours2) delete userDataToUpdate.workingHoursTue.endHours2;
+        //
+        // if (!userDataToUpdate.workingHoursWed.startMinutes3) delete userDataToUpdate.workingHoursWed.startMinutes3;
+        // if (!userDataToUpdate.workingHoursWed.startHours3) delete userDataToUpdate.workingHoursWed.startHours3;
+        // if (!userDataToUpdate.workingHoursWed.endMinutes3) delete userDataToUpdate.workingHoursWed.endMinutes3;
+        // if (!userDataToUpdate.workingHoursWed.endHours3) delete userDataToUpdate.workingHoursWed.endHours3;
+        //
+        // if (!userDataToUpdate.workingHoursThu.startMinutes4) delete userDataToUpdate.workingHoursThu.startMinutes4;
+        // if (!userDataToUpdate.workingHoursThu.startHours4) delete userDataToUpdate.workingHoursThu.startHours4;
+        // if (!userDataToUpdate.workingHoursThu.endMinutes4) delete userDataToUpdate.workingHoursThu.endMinutes4;
+        // if (!userDataToUpdate.workingHoursThu.endHours4) delete userDataToUpdate.workingHoursThu.endHours4;
+        //
+        // if (!userDataToUpdate.workingHoursFri.startMinutes5) delete userDataToUpdate.workingHoursFri.startMinutes5;
+        // if (!userDataToUpdate.workingHoursFri.startHours5) delete userDataToUpdate.workingHoursFri.startHours5;
+        // if (!userDataToUpdate.workingHoursFri.endMinutes5) delete userDataToUpdate.workingHoursFri.endMinutes5;
+        // if (!userDataToUpdate.workingHoursFri.endHours5) delete userDataToUpdate.workingHoursFri.endHours5;
+        //
+        //
+        // if (!userDataToUpdate.workingHoursSat.startMinutes6) delete userDataToUpdate.workingHoursSat.startMinutes6;
+        // if (!userDataToUpdate.workingHoursSat.startHours6) delete userDataToUpdate.workingHoursSat.startHours6;
+        // if (!userDataToUpdate.workingHoursSat.endMinutes6) delete userDataToUpdate.workingHoursSat.endMinutes6;
+        // if (!userDataToUpdate.workingHoursSat.endHours6) delete userDataToUpdate.workingHoursSat.endHours6;
+        //
+        //
+        // if (!userDataToUpdate.workingHoursSun.startMinutes7) delete userDataToUpdate.workingHoursSun.startMinutes7;
+        // if (!userDataToUpdate.workingHoursSun.startHours7) delete userDataToUpdate.workingHoursSun.startHours7;
+        // if (!userDataToUpdate.workingHoursSun.endMinutes7) delete userDataToUpdate.workingHoursSun.endMinutes7;
+        // if (!userDataToUpdate.workingHoursSun.endHours7) delete userDataToUpdate.workingHoursSun.endHours7;
         if (!userDataToUpdate.workingHoursMon) delete userDataToUpdate.workingHoursMon;
         if (!userDataToUpdate.workingHoursTue) delete userDataToUpdate.workingHoursTue;
         if (!userDataToUpdate.workingHoursWed) delete userDataToUpdate.workingHoursWed;
