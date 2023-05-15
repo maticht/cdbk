@@ -128,8 +128,8 @@ const validate = (data) => {
         savedUsers: Joi.array().items(Joi.string()).label("savedUsers").options({ allowUnknown: true }),
         likes: Joi.string().required().label("likes").options({ allowUnknown: true }),
         rating: Joi.array().items(Joi.object({
-            user: Joi.string().label("user").options({ allowUnknown: true }),
-            value: Joi.number().label("value").options({ allowUnknown: true }),
+            user: Joi.string().label("User").options({ allowUnknown: true }),
+            value: Joi.number().label("Value").options({ allowUnknown: true }),
         }).options({ allowUnknown: true }).label('rating')),
     });
     return schema.validate(data);

@@ -5,7 +5,6 @@ const Joi = require("joi");
 const Token = require("../models/token");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
-const mjml2html = require("mjml");
 
 const generateEmailTemplate = (url, firstName, lastName) => {
     const logoUrl = "https://res.cloudinary.com/maticht12345/image/upload/v1684165066/Logoall_ozcore.png";
