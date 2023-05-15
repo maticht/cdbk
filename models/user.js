@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     LinkedIn: { type: String, required: false },
     savedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }],
     likes: { type: String, required: false },
-    rating: { type: String, required: false },
+    rating: [{user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false}, value: {type: Number, default: 0, required: false}}],
     workingHoursMon: {type: {startHours1: String, startMinutes1: String, endHours1: String, endMinutes1: String,}, required: false,},
     workingHoursTue: {type: {startHours2: String, startMinutes2: String, endHours2: String, endMinutes2: String,}, required: false,},
     workingHoursWed: {type: {startHours3: String, startMinutes3: String, endHours3: String, endMinutes3: String,}, required: false,},
@@ -42,6 +42,7 @@ const userSchema = new mongoose.Schema({
     description: { type: String, required: false },
     services: { type: String, required: false },
     price: { type: String, required: false },
+    verified: { type: Boolean, default: false },
 
 }, { toJSON: { virtuals: true } });
 
@@ -126,7 +127,10 @@ const validate = (data) => {
         image: Joi.array().items(Joi.string().uri().label('ImageURL').options({ allowUnknown: true })).max(5).label('Images').options({ allowUnknown: true }),
         savedUsers: Joi.array().items(Joi.string()).label("savedUsers").options({ allowUnknown: true }),
         likes: Joi.string().required().label("likes").options({ allowUnknown: true }),
-        rating: Joi.string().required().label("rating").options({ allowUnknown: true }),
+        rating: Joi.array().items(Joi.object({
+            user: Joi.string().label("user").options({ allowUnknown: true }),
+            value: Joi.number().label("value").options({ allowUnknown: true }),
+        }).options({ allowUnknown: true }).label('rating')),
     });
     return schema.validate(data);
 };

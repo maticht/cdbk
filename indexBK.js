@@ -13,6 +13,8 @@ const unSaveUser = require("./models/unSaveUser")
 const getFavoritesUsers = require("./models/getFavoriteUsers")
 const moveToFront = require("./models/moveToFront")
 const removeImage = require("./models/removeImage")
+const verifyToken = require("./models/verifyToken")
+const addingRating = require("./models/addingRating")
 const connection = require("./db");
 
 connection();
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(rout);
 app.use(routPosts);
 app.use("/users", userRoutes);
+app.use("/verifyToken", verifyToken);
 app.use("/auth", userAuth);
 app.use("/update", userUpdate);
 app.use("/update", userUpdate);
@@ -31,6 +34,7 @@ app.use("/unSaveUser", unSaveUser);
 app.use("/getFavoritesUsers", getFavoritesUsers);
 app.use("/moveToFront", moveToFront);
 app.use("/removeImage", removeImage);
+app.use("/addingRating", addingRating);
 
 
 
