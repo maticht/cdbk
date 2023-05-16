@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { User} = require("../models/user");
+const { User } = require("../models/user");
+
 router.put("/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
@@ -9,12 +10,17 @@ router.put("/:id", async (req, res) => {
         if (!user.rating) {
             user.rating = [];
         }
-        const { userId, value } = req.body;
-        const existingRating = user.rating.find(rating => rating.user.toString() === userId);
-        if (existingRating) {
-            return res.status(409).send({ message: "Rating already exists for the user" });
+        const { userId, value, description, firstName, lastName, commentatorId} = req.body;
+        const existingRatingIndex = user.rating.findIndex(rating => rating?.commentatorId?.toString() === commentatorId);
+        if (existingRatingIndex !== -1) {
+            user.rating[existingRatingIndex].value = value;
+            user.rating[existingRatingIndex].description = description;
+            user.rating[existingRatingIndex].firstName = firstName;
+            user.rating[existingRatingIndex].lastName = lastName;
+            user.rating[existingRatingIndex].commentatorId = commentatorId;
+        } else {
+            user.rating.push({ user: userId, value, description, firstName, lastName, commentatorId });
         }
-        user.rating.push({ user: userId, value });
         const updatedUser = await user.save();
         return res.status(200).json({ data: updatedUser });
     } catch (error) {
@@ -24,5 +30,5 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-
 module.exports = router;
+

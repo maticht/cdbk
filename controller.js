@@ -47,7 +47,7 @@ exports.updateUser = async (req,res) => {
 exports.userProfile = async (req,res) => {
     try{
         const profile = await User.findById(req.params.userId).select(
-            'firstName ' +
+            'firstName city' +
             'lastName ' +
             'image ' +
             '_id ' +
@@ -62,7 +62,8 @@ exports.userProfile = async (req,res) => {
             'workingHoursMon workingHoursTue workingHoursWed workingHoursThu workingHoursFri workingHoursSat workingHoursSun ' +
             'description ' +
             'services ' +
-            'price ' +
+            'price city' +
+            'rating likes savedUsers verified role city' +
             'city region street house apartment '
         );
         return res.json({profile})
