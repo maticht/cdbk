@@ -63,8 +63,8 @@ const User = mongoose.model("user", userSchema);
 
 const validate = (data) => {
     const schema = Joi.object({
-        firstName: Joi.string().required().label("First Name").options({ allowUnknown: true }),
-        lastName: Joi.string().required().label("Last Name").options({ allowUnknown: true }),
+        firstName: Joi.string().required().label("firstName").options({ allowUnknown: true }),
+        lastName: Joi.string().required().label("lastName").options({ allowUnknown: true }),
         email: Joi.string().email().required().label("Email").options({ allowUnknown: true }),
         password: passwordComplexity().required().label("Password").options({ allowUnknown: true }),
         nameOrCompany:  Joi.string().required().label("Name Or Company").options({ allowUnknown: true }),
