@@ -68,7 +68,7 @@ router.post("/", async (req, res) => {
                     userId: user._id,
                     token: crypto.randomBytes(32).toString("hex"),
                 }).save();
-                const url = `${process.env.BASE_URL}SuccessfulLoginScreen/${user.id}/verify/${token.token}`;
+                const url = `${process.env.NOBASE_URL}SuccessfulLoginScreen/${user.id}/verify/${token.token}`;
                 const emailHtml = generateEmailTemplate(url, user.firstName, user.lastName);
                 await sendEmail(user.email, "Проверка электронной почты CISDEALS", emailHtml);
             }
