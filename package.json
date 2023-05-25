@@ -1,9 +1,9 @@
 {
-  "name": "19.04.22vironit",
+  "name": "servercisdeals",
   "version": "1.0.0",
-  "main": "indexBK.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon indexBK.js"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-jwt": "^6.1.0",
+    "express-jwt": "^8.4.1",
     "express-validator": "^6.14.0",
     "git": "^0.1.5",
     "joi": "^17.7.0",
